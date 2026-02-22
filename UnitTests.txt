@@ -2,6 +2,8 @@
 python -m unittest discover -s tests -p "test_*.py" -v
 
 G:\Projects\inkHeart\creativity_engine>python -m unittest discover -s tests -p "test_*.py" -v
+test_auto_repair_adopts_orphans (test_audit_auto_repair.TestAuditAutoRepair.test_auto_repair_adopts_orphans) ... ok
+test_quarantine_orphans_moves_files_and_clears_warning (test_audit_quarantine.TestAuditQuarantine.test_quarantine_orphans_moves_files_and_clears_warning) ... ok
 test_audit_detects_digest_mismatch (test_audit_store.TestAuditStore.test_audit_detects_digest_mismatch) ... ok
 test_audit_init_creates_missing_store_root (test_audit_store.TestAuditStore.test_audit_init_creates_missing_store_root) ... ok
 test_audit_ok_for_clean_store (test_audit_store.TestAuditStore.test_audit_ok_for_clean_store) ... ok
@@ -32,7 +34,7 @@ test_rollback_restores_snapshot_but_preserves_manifest (test_story_store_checkpo
 test_set_active_checkpoint_only_updates_pointer (test_story_store_checkpoints.TestStoryStoreCheckpoints.test_set_active_checkpoint_only_updates_pointer) ... ok
 
 ----------------------------------------------------------------------
-Ran 27 tests in 0.321s
+Ran 29 tests in 0.629s
 
 OK
 

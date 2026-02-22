@@ -1,4 +1,6 @@
 
+python -m unittest discover -s tests -p "test_*.py" -v
+
 G:\Projects\inkHeart\creativity_engine>python -m unittest discover -s tests -p "test_*.py" -v
 test_audit_detects_digest_mismatch (test_audit_store.TestAuditStore.test_audit_detects_digest_mismatch) ... ok
 test_audit_init_creates_missing_store_root (test_audit_store.TestAuditStore.test_audit_init_creates_missing_store_root) ... ok

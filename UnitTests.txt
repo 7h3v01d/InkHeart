@@ -1,0 +1,52 @@
+
+G:\Projects\inkHeart\creativity_engine>python -m unittest discover -s tests -p "test_*.py" -v
+test_audit_detects_digest_mismatch (test_audit_store.TestAuditStore.test_audit_detects_digest_mismatch) ... ok
+test_audit_init_creates_missing_store_root (test_audit_store.TestAuditStore.test_audit_init_creates_missing_store_root) ... ok
+test_audit_ok_for_clean_store (test_audit_store.TestAuditStore.test_audit_ok_for_clean_store) ... ok
+test_audit_warns_on_orphan_checkpoint_files (test_audit_store.TestAuditStore.test_audit_warns_on_orphan_checkpoint_files) ... ok
+test_tools_imports (test_import_sanity.TestImportSanity.test_tools_imports) ... ok
+test_invalid_scene_frame_choice_gate_schema (test_schema_validation.TestSchemaValidation.test_invalid_scene_frame_choice_gate_schema) ... ok
+test_invalid_story_dna_missing_layer_schema (test_schema_validation.TestSchemaValidation.test_invalid_story_dna_missing_layer_schema) ... ok
+test_semantic_invalid_story_session_manifest_bad_active_blocks (test_schema_validation.TestSchemaValidation.test_semantic_invalid_story_session_manifest_bad_active_blocks) ... ok
+test_semantic_valid_scene_frame_has_no_blocking (test_schema_validation.TestSchemaValidation.test_semantic_valid_scene_frame_has_no_blocking) ... ok
+test_semantic_valid_story_dna_has_no_blocking (test_schema_validation.TestSchemaValidation.test_semantic_valid_story_dna_has_no_blocking) ... ok
+test_semantic_valid_story_session_v1_1_has_no_blocking (test_schema_validation.TestSchemaValidation.test_semantic_valid_story_session_v1_1_has_no_blocking) ... ok
+test_semantic_warn_theme_alignment_fixture (test_schema_validation.TestSchemaValidation.test_semantic_warn_theme_alignment_fixture) ... ok
+test_valid_published_story_schema (test_schema_validation.TestSchemaValidation.test_valid_published_story_schema) ... ok
+test_valid_scene_frame_schema (test_schema_validation.TestSchemaValidation.test_valid_scene_frame_schema) ... ok
+test_valid_story_dna_schema (test_schema_validation.TestSchemaValidation.test_valid_story_dna_schema) ... ok
+test_valid_story_session_inline_dna_schema (test_schema_validation.TestSchemaValidation.test_valid_story_session_inline_dna_schema) ... ok
+test_digest_mismatch_raises (test_story_store.TestStoryStore.test_digest_mismatch_raises) ... ok
+test_index_events_written (test_story_store.TestStoryStore.test_index_events_written) ... ok
+test_save_and_load_published_story (test_story_store.TestStoryStore.test_save_and_load_published_story) ... ok
+test_save_and_load_scene_frame (test_story_store.TestStoryStore.test_save_and_load_scene_frame) ... ok
+test_save_and_load_session (test_story_store.TestStoryStore.test_save_and_load_session) ... ok
+test_save_and_load_story_dna (test_story_store.TestStoryStore.test_save_and_load_story_dna) ... ok
+test_validation_gate_blocks_under_strict_policy (test_story_store.TestStoryStore.test_validation_gate_blocks_under_strict_policy)
+Under strict policy, the WARN fixture should be blocked if validation is enabled. ... ok
+test_checkpoint_events_written (test_story_store_checkpoints.TestStoryStoreCheckpoints.test_checkpoint_events_written) ... ok
+test_create_checkpoint_and_list_and_manifest (test_story_store_checkpoints.TestStoryStoreCheckpoints.test_create_checkpoint_and_list_and_manifest) ... ok
+test_rollback_restores_snapshot_but_preserves_manifest (test_story_store_checkpoints.TestStoryStoreCheckpoints.test_rollback_restores_snapshot_but_preserves_manifest) ... ok
+test_set_active_checkpoint_only_updates_pointer (test_story_store_checkpoints.TestStoryStoreCheckpoints.test_set_active_checkpoint_only_updates_pointer) ... ok
+
+----------------------------------------------------------------------
+Ran 27 tests in 0.321s
+
+OK
+
+G:\Projects\inkHeart\creativity_engine>python -m tools.audit_store store --repair
+[repair-plan] actions=0 remaining_issues=0
+
+G:\Projects\inkHeart\creativity_engine>python -m tools.audit_store store --repair --apply
+[repair-plan] actions=0 remaining_issues=0
+✅ OK  (store=G:\Projects\inkHeart\creativity_engine\store)
+
+G:\Projects\inkHeart\creativity_engine>python -m tools.audit_store store --repair --apply --no-adopt-orphans
+[repair-plan] actions=0 remaining_issues=0
+✅ OK  (store=G:\Projects\inkHeart\creativity_engine\store)
+
+G:\Projects\inkHeart\creativity_engine>python -m tools.audit_store store --repair --apply --repair-digests
+[repair-plan] actions=0 remaining_issues=0
+✅ OK  (store=G:\Projects\inkHeart\creativity_engine\store)
+
+G:\Projects\inkHeart\creativity_engine>

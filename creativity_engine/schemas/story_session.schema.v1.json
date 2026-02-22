@@ -1,0 +1,152 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "keystone://creativity-engine/schema/story_session.v1.json",
+  "title": "Creativity Engine - StorySession (v1)",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "session_id",
+    "story_id",
+    "mode",
+    "created_at_unix",
+    "updated_at_unix",
+    "rng_seed",
+    "knobs",
+    "story_dna_ref",
+    "canon",
+    "progress",
+    "logs"
+  ],
+  "properties": {
+    "schema_version": { "type": "string", "const": "story_session.v1" },
+    "session_id": { "type": "string", "format": "uuid" },
+    "story_id": { "type": "string", "format": "uuid" },
+    "mode": { "type": "string", "enum": ["STORY", "PUBLISH"] },
+    "created_at_unix": { "type": "number" },
+    "updated_at_unix": { "type": "number" },
+
+    "rng_seed": { "type": "integer", "minimum": 0 },
+    "knobs": { "$ref": "keystone://creativity-engine/schema/story_dna.v1.json#/$defs/Knobs" },
+
+    "story_dna_ref": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema_id", "digest", "inline"],
+      "properties": {
+        "schema_id": { "type": "string" },
+        "digest": { "type": "string", "minLength": 8, "maxLength": 128 },
+        "inline": { "type": "boolean" },
+        "story_dna": { "type": "object" }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "inline": { "const": true } }, "required": ["inline"] },
+          "then": { "required": ["story_dna"] }
+        }
+      ]
+    },
+
+    "canon": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["characters", "setting_facts", "unresolved_threads", "motifs"],
+      "properties": {
+        "characters": {
+          "type": "array",
+          "maxItems": 64,
+          "items": { "$ref": "keystone://creativity-engine/schema/story_dna.v1.json#/$defs/CharacterSeed" }
+        },
+        "setting_facts": {
+          "type": "array",
+          "maxItems": 80,
+          "items": { "type": "string", "minLength": 3, "maxLength": 240 }
+        },
+        "unresolved_threads": {
+          "type": "array",
+          "maxItems": 40,
+          "items": { "type": "string", "minLength": 3, "maxLength": 240 }
+        },
+        "motifs": {
+          "type": "array",
+          "maxItems": 40,
+          "items": { "type": "string", "minLength": 2, "maxLength": 80 }
+        }
+      }
+    },
+
+    "progress": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["active_checkpoint", "chapters", "completed"],
+      "properties": {
+        "active_checkpoint": { "type": "integer", "minimum": 0 },
+        "chapters": {
+          "type": "array",
+          "maxItems": 200,
+          "items": { "$ref": "#/$defs/ChapterRecord" }
+        },
+        "completed": { "type": "boolean" }
+      }
+    },
+
+    "logs": {
+      "type": "array",
+      "maxItems": 2000,
+      "items": { "$ref": "#/$defs/LogEvent" }
+    }
+  },
+  "$defs": {
+    "ChapterRecord": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["chapter_id", "title", "scenes", "summary"],
+      "properties": {
+        "chapter_id": { "type": "string", "format": "uuid" },
+        "title": { "type": "string", "minLength": 1, "maxLength": 120 },
+        "summary": { "type": "string", "maxLength": 2000 },
+        "scenes": {
+          "type": "array",
+          "maxItems": 200,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["scene_id", "scene_ref"],
+            "properties": {
+              "scene_id": { "type": "string", "format": "uuid" },
+              "scene_ref": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["schema_id", "digest", "path"],
+                "properties": {
+                  "schema_id": { "type": "string" },
+                  "digest": { "type": "string", "minLength": 8, "maxLength": 128 },
+                  "path": { "type": "string", "minLength": 1, "maxLength": 260 }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+
+    "LogEvent": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["at_unix", "level", "component", "event", "message"],
+      "properties": {
+        "at_unix": { "type": "number" },
+        "level": { "type": "string", "enum": ["DEBUG", "INFO", "WARN", "ERROR"] },
+        "component": { "type": "string", "minLength": 1, "maxLength": 60 },
+        "event": { "type": "string", "minLength": 1, "maxLength": 80 },
+        "message": { "type": "string", "minLength": 1, "maxLength": 800 },
+        "fields": {
+          "type": "object",
+          "additionalProperties": {
+            "type": ["string", "number", "integer", "boolean", "null"]
+          }
+        }
+      }
+    }
+  }
+}

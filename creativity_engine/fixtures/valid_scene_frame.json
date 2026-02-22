@@ -1,0 +1,30 @@
+{
+  "schema_version": "scene_frame.v1",
+  "scene_id": "33333333-3333-3333-3333-333333333333",
+  "chapter_index": 0,
+  "scene_index": 0,
+  "frame": {
+    "escalation_tier": "A1",
+    "identity_tension": 25,
+    "thematic_stress": 20,
+    "relational_friction": 30,
+    "canon_constraints": {
+      "must_include_callbacks": ["Clock ticks backward once."],
+      "forbidden": ["Gore", "Explicit violence"]
+    },
+    "choice_gate": {
+      "enabled": true,
+      "prompt": "Do you follow the sound toward the square or check the river mill?",
+      "options": [
+        { "text": "Go to the square", "weight": 0.55, "consequence_hint": "Meet someone with answers." },
+        { "text": "Go to the mill", "weight": 0.45, "consequence_hint": "Find a clue in the dark." }
+      ],
+      "selected_index": 0
+    }
+  },
+  "generated": {
+    "prose": "Mae paused as the clock chimed—softly, strangely—one note slipping backward like a sigh...",
+    "summary": "Mae hears the backward chime and chooses the square.",
+    "key_events": ["Backward chime", "Mae chooses the square"]
+  }
+}

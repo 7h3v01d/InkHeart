@@ -1,0 +1,22 @@
+{
+  "schema_version": "scene_frame.v1",
+  "scene_id": "44444444-4444-4444-4444-444444444444",
+  "chapter_index": 0,
+  "scene_index": 1,
+  "frame": {
+    "escalation_tier": "A1",
+    "identity_tension": 10,
+    "thematic_stress": 10,
+    "relational_friction": 10,
+    "canon_constraints": { "must_include_callbacks": [], "forbidden": [] },
+    "choice_gate": {
+      "enabled": true,
+      "prompt": "Choose a path."
+    }
+  },
+  "generated": {
+    "prose": "A fork in the road appeared.",
+    "summary": "A choice appears.",
+    "key_events": ["Fork appears"]
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "schema_version": "story_dna.v1",
+  "story_id": "22222222-2222-2222-2222-222222222222",
+  "seed": 1,
+  "knobs": {
+    "randomness": 0.2,
+    "continuity_strictness": 0.8,
+    "depth_bias": 0.7,
+    "twist_probability": 0.1,
+    "conflict_ratio": 0.4
+  },
+  "layers": {
+    "structural_engine": {
+      "story_type": "linear_short",
+      "pov": "third_limited",
+      "tense": "past",
+      "tone": "gentle",
+      "genre": "slice of life",
+      "length_target": "short",
+      "act_count": 3
+    },
+    "psychological_hook": {
+      "curiosity_question": "What is hidden under the bridge?",
+      "emotional_hook": "A small kindness changes everything.",
+      "opening_promise": "A comforting tale with meaning."
+    },
+    "identity_spine": {
+      "protagonist": {
+        "name": "June",
+        "role": "gardener",
+        "traits": ["patient", "quiet", "brave"],
+        "motivation": "Keep her community safe."
+      },
+      "core_lie": "I must do everything alone.",
+      "core_need": "Let people in.",
+      "core_want": "Fix the problem quietly.",
+      "transformation_goal": "Ask for help."
+    },
+    "escalation_model": {
+      "stakes_curve": { "start": 10, "mid": 30, "end": 60 },
+      "danger_curve": { "start": 5, "mid": 25, "end": 50 },
+      "intimacy_curve": { "start": 10, "mid": 40, "end": 70 },
+      "pivot_rules": { "max_pivots": 1, "pivot_requires_setup": true, "setup_call_back_required": true }
+    },
+    "relational_map": { "supporting_cast": [], "relationships": [] },
+    "immersion_profile": {
+      "setting": { "name": "Haven", "timeframe": "modern", "place": "small town", "rules": ["No overt magic."] },
+      "sensory_focus": ["sight"],
+      "style_constraints": { "reading_level": "ya", "humor_level": 2, "violence_level": 0, "romance_level": 1 }
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "ok": false,
+  "store_root": "G:\\Projects\\inkHeart\\creativity_engine\\store",
+  "issues": [
+    {
+      "severity": "ERROR",
+      "code": "missing_sessions_dir",
+      "location": "sessions",
+      "message": "sessions/ directory not found."
+    }
+  ]
+}

@@ -1,0 +1,181 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "keystone://creativity-engine/schema/story_session.v1_1.json",
+  "title": "Creativity Engine - StorySession (v1.1)",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "session_id",
+    "story_id",
+    "mode",
+    "created_at_unix",
+    "updated_at_unix",
+    "rng_seed",
+    "knobs",
+    "story_dna_ref",
+    "canon",
+    "progress",
+    "logs"
+  ],
+  "properties": {
+    "schema_version": { "type": "string", "const": "story_session.v1.1" },
+    "session_id": { "type": "string", "format": "uuid" },
+    "story_id": { "type": "string", "format": "uuid" },
+    "mode": { "type": "string", "enum": ["STORY", "BUILD", "DEBUG"] },
+    "created_at_unix": { "type": "number" },
+    "updated_at_unix": { "type": "number" },
+    "rng_seed": { "type": "integer" },
+
+    "knobs": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "randomness",
+        "continuity_strictness",
+        "depth_bias",
+        "twist_probability",
+        "conflict_ratio"
+      ],
+      "properties": {
+        "randomness": { "type": "number", "minimum": 0.0, "maximum": 1.0 },
+        "continuity_strictness": { "type": "number", "minimum": 0.0, "maximum": 1.0 },
+        "depth_bias": { "type": "number", "minimum": 0.0, "maximum": 1.0 },
+        "twist_probability": { "type": "number", "minimum": 0.0, "maximum": 1.0 },
+        "conflict_ratio": { "type": "number", "minimum": 0.0, "maximum": 1.0 }
+      }
+    },
+
+    "story_dna_ref": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema_id", "digest", "inline"],
+      "properties": {
+        "schema_id": { "type": "string" },
+        "digest": { "type": "string", "minLength": 8, "maxLength": 128 },
+        "path": { "type": "string", "minLength": 1, "maxLength": 260 },
+        "inline": { "type": "boolean" },
+        "story_dna": { "type": "object" }
+      }
+    },
+
+    "canon": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["characters", "setting_facts", "unresolved_threads", "motifs"],
+      "properties": {
+        "characters": { "type": "array", "maxItems": 200, "items": { "type": "object" } },
+        "setting_facts": {
+          "type": "array",
+          "maxItems": 5000,
+          "items": { "type": "string", "minLength": 1, "maxLength": 300 }
+        },
+        "unresolved_threads": {
+          "type": "array",
+          "maxItems": 5000,
+          "items": { "type": "string", "minLength": 1, "maxLength": 300 }
+        },
+        "motifs": {
+          "type": "array",
+          "maxItems": 2000,
+          "items": { "type": "string", "minLength": 1, "maxLength": 120 }
+        }
+      }
+    },
+
+    "progress": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["active_checkpoint", "checkpoints", "chapters", "completed"],
+      "properties": {
+        "active_checkpoint": { "type": "integer", "minimum": 0 },
+
+        "checkpoints": {
+          "type": "array",
+          "maxItems": 20000,
+          "items": { "$ref": "#/$defs/CheckpointManifestEntry" }
+        },
+
+        "chapters": {
+          "type": "array",
+          "maxItems": 200,
+          "items": { "$ref": "#/$defs/ChapterRecord" }
+        },
+        "completed": { "type": "boolean" }
+      }
+    },
+
+    "logs": {
+      "type": "array",
+      "maxItems": 2000,
+      "items": { "$ref": "#/$defs/LogEvent" }
+    }
+  },
+
+  "$defs": {
+    "CheckpointManifestEntry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["index", "digest", "path", "at_unix"],
+      "properties": {
+        "index": { "type": "integer", "minimum": 0 },
+        "digest": { "type": "string", "minLength": 8, "maxLength": 128 },
+        "path": { "type": "string", "minLength": 1, "maxLength": 260 },
+        "at_unix": { "type": "number" },
+        "note": { "type": "string", "maxLength": 500 }
+      }
+    },
+
+    "ChapterRecord": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["chapter_id", "title", "scenes", "summary"],
+      "properties": {
+        "chapter_id": { "type": "string", "format": "uuid" },
+        "title": { "type": "string", "minLength": 1, "maxLength": 120 },
+        "summary": { "type": "string", "maxLength": 2000 },
+        "scenes": {
+          "type": "array",
+          "maxItems": 200,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["scene_id", "scene_ref"],
+            "properties": {
+              "scene_id": { "type": "string", "format": "uuid" },
+              "scene_ref": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["schema_id", "digest", "path"],
+                "properties": {
+                  "schema_id": { "type": "string" },
+                  "digest": { "type": "string", "minLength": 8, "maxLength": 128 },
+                  "path": { "type": "string", "minLength": 1, "maxLength": 260 }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+
+    "LogEvent": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["at_unix", "level", "component", "event", "message"],
+      "properties": {
+        "at_unix": { "type": "number" },
+        "level": { "type": "string", "enum": ["DEBUG", "INFO", "WARN", "ERROR"] },
+        "component": { "type": "string", "minLength": 1, "maxLength": 60 },
+        "event": { "type": "string", "minLength": 1, "maxLength": 80 },
+        "message": { "type": "string", "minLength": 1, "maxLength": 800 },
+        "fields": {
+          "type": "object",
+          "additionalProperties": {
+            "type": ["string", "number", "integer", "boolean", "null"]
+          }
+        }
+      }
+    }
+  }
+}

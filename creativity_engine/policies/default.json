@@ -1,0 +1,7 @@
+{
+  "version": 1,
+  "name": "default",
+  "block_severities": ["ERROR", "FATAL"],
+  "upgrades": {},
+  "downgrades": {}
+}

@@ -1,0 +1,101 @@
+{
+  "schema_version": "story_session.v1.1",
+  "session_id": "55555555-5555-5555-5555-555555555555",
+  "story_id": "11111111-1111-1111-1111-111111111111",
+  "mode": "STORY",
+  "created_at_unix": 1700000000.0,
+  "updated_at_unix": 1700000100.0,
+  "rng_seed": 42,
+  "knobs": {
+    "randomness": 0.25,
+    "continuity_strictness": 0.9,
+    "depth_bias": 0.8,
+    "twist_probability": 0.15,
+    "conflict_ratio": 0.5
+  },
+  "story_dna_ref": {
+    "schema_id": "keystone://creativity-engine/schema/story_dna.v1.json",
+    "digest": "sha256:DEMO",
+    "inline": true,
+    "story_dna": {
+      "schema_version": "story_dna.v1",
+      "story_id": "11111111-1111-1111-1111-111111111111",
+      "seed": 42,
+      "knobs": {
+        "randomness": 0.25,
+        "continuity_strictness": 0.9,
+        "depth_bias": 0.8,
+        "twist_probability": 0.15,
+        "conflict_ratio": 0.5
+      },
+      "layers": {
+        "structural_engine": {
+          "story_type": "linear_short",
+          "pov": "third_limited",
+          "tense": "past",
+          "tone": "warm",
+          "genre": "cozy",
+          "length_target": "short",
+          "act_count": 3
+        },
+        "psychological_hook": {
+          "curiosity_question": "Why is the clock running backwards?",
+          "emotional_hook": "Mae wants to fix what feels wrong.",
+          "opening_promise": "A gentle mystery with heart."
+        },
+        "identity_spine": {
+          "protagonist": {
+            "name": "Mae",
+            "role": "baker",
+            "traits": ["kind", "stubborn"],
+            "motivation": "Protect her town."
+          },
+          "core_lie": "I must do this alone.",
+          "core_need": "Trust others.",
+          "core_want": "Solve it quickly.",
+          "transformation_goal": "Choose connection."
+        },
+        "thematic_axis": {
+          "thematic_question": "Is help a weakness?",
+          "values_in_conflict": ["pride", "belonging"],
+          "climax_choice_resolves_tension": true
+        },
+        "escalation_model": {
+          "stakes_curve": { "start": 10, "mid": 40, "end": 70 },
+          "danger_curve": { "start": 5, "mid": 25, "end": 60 },
+          "intimacy_curve": { "start": 10, "mid": 50, "end": 80 },
+          "pivot_rules": { "max_pivots": 1, "pivot_requires_setup": true, "setup_call_back_required": true }
+        },
+        "relational_map": { "supporting_cast": [], "relationships": [] },
+        "immersion_profile": {
+          "setting": { "name": "Rosewick", "timeframe": "timeless", "place": "village", "rules": ["Magic is subtle."] },
+          "sensory_focus": ["sound"],
+          "style_constraints": { "reading_level": "ya", "humor_level": 3, "violence_level": 0, "romance_level": 1 }
+        }
+      }
+    }
+  },
+  "canon": {
+    "characters": [],
+    "setting_facts": ["The clock tower is old."],
+    "unresolved_threads": ["What caused the backward chime?"],
+    "motifs": ["backward time"]
+  },
+  "progress": {
+    "active_checkpoint": 5,
+    "checkpoints": [
+      {
+        "index": 0,
+        "digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "path": "checkpoints/55555555-5555-5555-5555-555555555555/cp_0000.json",
+        "at_unix": 1700000200.0,
+        "note": "only cp0 exists"
+      }
+    ],
+    "chapters": [],
+    "completed": false
+  },
+  "logs": [
+    { "at_unix": 1700000000.0, "level": "INFO", "component": "router", "event": "session_created", "message": "Story session created." }
+  ]
+}

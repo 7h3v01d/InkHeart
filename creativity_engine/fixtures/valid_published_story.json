@@ -1,0 +1,29 @@
+{
+  "schema_version": "published_story.v1",
+  "story_id": "11111111-1111-1111-1111-111111111111",
+  "edition_id": "66666666-6666-6666-6666-666666666666",
+  "title": "The Backward Clock",
+  "created_at_unix": 1700000200.0,
+  "source_session_id": "55555555-5555-5555-5555-555555555555",
+  "credits": {
+    "author_display_name": "Love",
+    "assistant_voice": "Piper",
+    "engine_version": "ce-0.1"
+  },
+  "manifest": {
+    "formats": [
+      { "type": "html", "path": "published/the_backward_clock.html", "digest": "sha256:DEMOHTML" }
+    ],
+    "assets": [
+      { "kind": "cover_image", "path": "published/cover.png", "digest": "sha256:DEMOCOVER", "mime": "image/png" }
+    ]
+  },
+  "chapters": [
+    {
+      "chapter_index": 0,
+      "title": "A Strange Chime",
+      "summary": "Mae hears the clock run backward.",
+      "text": "Mae paused as the clock chimed—softly, strangely..."
+    }
+  ]
+}

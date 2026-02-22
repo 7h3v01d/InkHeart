@@ -1,0 +1,7 @@
+{
+  "version": 1,
+  "name": "strict",
+  "block_severities": ["WARN", "ERROR", "FATAL"],
+  "upgrades": {},
+  "downgrades": {}
+}

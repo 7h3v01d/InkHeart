@@ -1,0 +1,95 @@
+{
+  "schema_version": "story_dna.v1",
+  "story_id": "99999999-9999-9999-9999-999999999999",
+  "seed": 7,
+  "knobs": {
+    "randomness": 0.25,
+    "continuity_strictness": 0.9,
+    "depth_bias": 0.8,
+    "twist_probability": 0.15,
+    "conflict_ratio": 0.5
+  },
+  "tags": ["cozy", "adventure"],
+  "layers": {
+    "structural_engine": {
+      "story_type": "choose_your_own_adventure",
+      "pov": "third_limited",
+      "tense": "past",
+      "tone": "warm and adventurous",
+      "genre": "cozy fantasy",
+      "length_target": "short",
+      "act_count": 3
+    },
+    "psychological_hook": {
+      "curiosity_question": "Why is the town's clock running backwards?",
+      "emotional_hook": "A gentle mystery pulls the heroine into hidden kindness.",
+      "opening_promise": "A safe, charming adventure with meaningful choices."
+    },
+    "identity_spine": {
+      "protagonist": {
+        "name": "Mae",
+        "role": "curious baker",
+        "traits": ["kind", "stubborn", "observant"],
+        "motivation": "Protect her town and prove she can be brave.",
+        "backstory_hint": "She once failed someone and still carries guilt."
+      },
+      "core_lie": "If I look at the ocean, I will lose my voice.",
+      "core_need": "To trust others and share responsibility.",
+      "core_want": "To solve the mystery alone and feel worthy.",
+      "transformation_goal": "Choose connection over control."
+    },
+    "thematic_axis": {
+      "thematic_question": "Is independence worth the cost of loneliness?",
+      "values_in_conflict": ["independence", "belonging"],
+      "climax_choice_resolves_tension": true
+    },
+    "escalation_model": {
+      "stakes_curve": { "start": 10, "mid": 45, "end": 80 },
+      "danger_curve": { "start": 5, "mid": 35, "end": 70 },
+      "intimacy_curve": { "start": 15, "mid": 55, "end": 85 },
+      "pivot_rules": {
+        "max_pivots": 2,
+        "pivot_requires_setup": true,
+        "setup_call_back_required": true
+      }
+    },
+    "relational_map": {
+      "supporting_cast": [
+        {
+          "name": "Eli",
+          "role": "watchmaker",
+          "traits": ["gentle", "precise", "secretive"],
+          "motivation": "Make amends for an old mistake."
+        }
+      ],
+      "relationships": [
+        {
+          "a": "Mae",
+          "b": "Eli",
+          "type": "ally",
+          "tension": 35,
+          "notes": "Trust grows as clues accumulate."
+        }
+      ]
+    },
+    "immersion_profile": {
+      "setting": {
+        "name": "Rosewick",
+        "timeframe": "a timeless village",
+        "place": "cobblestone lanes, lanterns, and a river mill",
+        "rules": ["Magic is subtle and tied to feelings."]
+      },
+      "sensory_focus": ["sight", "sound", "smell"],
+      "style_constraints": {
+        "reading_level": "ya",
+        "humor_level": 4,
+        "violence_level": 1,
+        "romance_level": 2
+      }
+    },
+    "meta_amplification": {
+      "enabled": true,
+      "techniques": ["foreshadowing", "motif_echo", "emotional_callback"]
+    }
+  }
+}

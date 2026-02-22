@@ -1,0 +1,26 @@
+{
+  "schema_version": "scene_frame.v1",
+  "scene_id": "77777777-7777-7777-7777-777777777777",
+  "chapter_index": 0,
+  "scene_index": 2,
+  "frame": {
+    "escalation_tier": "A1",
+    "identity_tension": 10,
+    "thematic_stress": 10,
+    "relational_friction": 10,
+    "canon_constraints": { "must_include_callbacks": [], "forbidden": [] },
+    "choice_gate": {
+      "enabled": true,
+      "prompt": "Pick one.",
+      "options": [
+        { "text": "A", "weight": 0.9 },
+        { "text": "B", "weight": 0.9 }
+      ]
+    }
+  },
+  "generated": {
+    "prose": "Choice appears.",
+    "summary": "Choice appears.",
+    "key_events": ["Choice"]
+  }
+}

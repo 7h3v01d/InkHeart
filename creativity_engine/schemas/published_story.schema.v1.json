@@ -1,0 +1,96 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "keystone://creativity-engine/schema/published_story.v1.json",
+  "title": "Creativity Engine - PublishedStory Manifest (v1)",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "story_id",
+    "edition_id",
+    "title",
+    "created_at_unix",
+    "source_session_id",
+    "manifest",
+    "chapters"
+  ],
+  "properties": {
+    "schema_version": { "type": "string", "const": "published_story.v1" },
+    "story_id": { "type": "string", "format": "uuid" },
+    "edition_id": { "type": "string", "format": "uuid" },
+    "title": { "type": "string", "minLength": 1, "maxLength": 160 },
+    "subtitle": { "type": "string", "maxLength": 200 },
+    "created_at_unix": { "type": "number" },
+    "source_session_id": { "type": "string", "format": "uuid" },
+
+    "credits": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "author_display_name": { "type": "string", "maxLength": 120 },
+        "assistant_voice": { "type": "string", "maxLength": 120 },
+        "engine_version": { "type": "string", "maxLength": 60 }
+      }
+    },
+
+    "manifest": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["formats", "assets"],
+      "properties": {
+        "formats": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 6,
+          "items": { "$ref": "#/$defs/FormatArtifact" }
+        },
+        "assets": {
+          "type": "array",
+          "maxItems": 200,
+          "items": { "$ref": "#/$defs/Asset" }
+        }
+      }
+    },
+
+    "chapters": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 500,
+      "items": { "$ref": "#/$defs/PublishedChapter" }
+    }
+  },
+  "$defs": {
+    "FormatArtifact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "path", "digest"],
+      "properties": {
+        "type": { "type": "string", "enum": ["html", "pdf", "epub", "txt", "md"] },
+        "path": { "type": "string", "minLength": 1, "maxLength": 260 },
+        "digest": { "type": "string", "minLength": 8, "maxLength": 128 }
+      }
+    },
+    "Asset": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "path", "digest"],
+      "properties": {
+        "kind": { "type": "string", "enum": ["cover_image", "icon", "audio", "css", "font", "misc"] },
+        "path": { "type": "string", "minLength": 1, "maxLength": 260 },
+        "digest": { "type": "string", "minLength": 8, "maxLength": 128 },
+        "mime": { "type": "string", "maxLength": 120 }
+      }
+    },
+    "PublishedChapter": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["chapter_index", "title", "text", "summary"],
+      "properties": {
+        "chapter_index": { "type": "integer", "minimum": 0 },
+        "title": { "type": "string", "minLength": 1, "maxLength": 160 },
+        "summary": { "type": "string", "maxLength": 2000 },
+        "text": { "type": "string", "minLength": 1, "maxLength": 200000 }
+      }
+    }
+  }
+}
